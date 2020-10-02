@@ -3,6 +3,8 @@
 
 namespace App\Controller;
 
+use Cake\ORM\Query;
+
 class ArticlesController extends AppController
 {
     public function index()
@@ -49,7 +51,7 @@ class ArticlesController extends AppController
 
         $tags = $this->Articles->Tags->find('list');
         $this->set('tags', $tags);
-        
+
         $this->set('article', $article);
     }
 
@@ -62,5 +64,17 @@ class ArticlesController extends AppController
             $this->Flash->success(__('L\'article {0} a été supprimé.', $article->title));
             return $this->redirect(['action' => 'index']);
         }
+    }
+
+    public function tags()
+    {
+        $tags = $this->request->getParam('pass');
+
+        $articles = $this->Articles->find('tagged', ['tags' => $tags]);
+
+        $this->set([
+            'articles' => $articles,
+            'tags' => $tags
+        ]);
     }
 }

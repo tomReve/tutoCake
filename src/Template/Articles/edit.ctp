@@ -5,6 +5,6 @@
 <?= $this->Form->control('user_id', ['type'=>'hidden']) ?>
 <?= $this->Form->control('title') ?>
 <?= $this->Form->control('body', ['rows' => 3]) ?>
-<?= $this->Form->control('tags._ids', ['options' => $tags]) ?>
+<?= $this->Form->control('tag_string', ['type' => 'text']) ?>
 <?= $this->Form->button(__('Sauvegarder l\'article')) ?>
 <?= $this->Form->end() ?>
